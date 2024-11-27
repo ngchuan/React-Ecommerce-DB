@@ -4,19 +4,10 @@
 const express = require('express');
 const router = express.Router();
 const cartService = require('../services/cartService');
-const authenticateToken = require('../middlewares/UserAuth');
+const authenticateToken = require('../middleware/UserAuth');
 
 // Apply the authenticateToken middleware to all routes
 router.use(authenticateToken);
-
-// GET cart contents
-// router.get('/', async (req, res) => {
-//   try {
-//      res.send("Get Cart Route");
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
 
 // GET cart contents
 router.get('/', async (req, res) => {
@@ -27,15 +18,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-// PUT bulk update cart
-// router.put('/', async (req, res) => {
-//   try {
-//      res.send("Put Cart Route")
-//   } catch (error) {
-//      res.status(500).json({ message: error.message });
-//   }
-// });
 
 // PUT bulk update cart
 router.put('/', async (req, res) => {

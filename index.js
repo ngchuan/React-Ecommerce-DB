@@ -1,35 +1,33 @@
-require('dotenv').config();
-// make sure this comes AFTER dotenv config
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
+// const pool = require('./database');
 
+// make sure this comes AFTER dotenv config
 const productsRouter = require('./routes/products');
 const userRoutes = require('./routes/users');
 const cartRoutes = require('./routes/cart');
 
-// const pool = require('./database');
-
 const app = express();
 
-// setup for RESTFul API
+// Middleware
 app.use(express.json());
 app.use(cors());
 
 // Routes Begin Here
-
-app.get("/", function(req,res){
-  res.json({
-      "message":"hello world"
-  })
-})
+// app.get("/", function(req,res){
+//   res.json({
+//       "message":"hello world"
+//   })
+// })
 
 // Middleware
 app.use("/api/products", productsRouter)
 app.use('/api/users', userRoutes);
 app.use('/api/cart', cartRoutes);
 
-// Routes
+// Basic Routes
 app.get('/', (req, res) => {
   res.json({ message: "Welcome to the API" });
 });
